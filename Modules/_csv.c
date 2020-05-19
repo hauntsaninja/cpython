@@ -19,7 +19,7 @@ module _csv
 [clinic start generated code]*/
 /*[clinic end generated code: output=da39a3ee5e6b4b0d input=385118b71aa43706]*/
 
-#include "Modules/clinic/_csv.c.h"
+#include "clinic/_csv.c.h"
 
 
 typedef struct {
