@@ -10802,6 +10802,16 @@ static PyObject *
 unicode_title_impl(PyObject *self)
 /*[clinic end generated code: output=c75ae03809574902 input=533ce0eb6a7f5d1b]*/
 {
+    if (PyUnicode_IS_ASCII(self)) {
+        Py_ssize_t len = PyUnicode_GET_LENGTH(self);
+        const char *data = PyUnicode_DATA(self);
+        PyObject *res = PyUnicode_New(len, 127);
+        if (res == NULL) {
+            return NULL;
+        }
+        _Py_bytes_title(PyUnicode_DATA(res), data, len);
+        return res;
+    }
     return case_operation(self, do_title);
 }
 
@@ -10821,6 +10831,16 @@ unicode_capitalize_impl(PyObject *self)
 {
     if (PyUnicode_GET_LENGTH(self) == 0)
         return unicode_result_unchanged(self);
+    if (PyUnicode_IS_ASCII(self)) {
+        Py_ssize_t len = PyUnicode_GET_LENGTH(self);
+        const char *data = PyUnicode_DATA(self);
+        PyObject *res = PyUnicode_New(len, 127);
+        if (res == NULL) {
+            return NULL;
+        }
+        _Py_bytes_capitalize(PyUnicode_DATA(res), data, len);
+        return res;
+    }
     return case_operation(self, do_capitalize);
 }
 
@@ -13057,6 +13077,16 @@ static PyObject *
 unicode_swapcase_impl(PyObject *self)
 /*[clinic end generated code: output=5d28966bf6d7b2af input=85bc39a9b4e8ee91]*/
 {
+    if (PyUnicode_IS_ASCII(self)) {
+        Py_ssize_t len = PyUnicode_GET_LENGTH(self);
+        const char *data = PyUnicode_DATA(self);
+        PyObject *res = PyUnicode_New(len, 127);
+        if (res == NULL) {
+            return NULL;
+        }
+        _Py_bytes_swapcase(PyUnicode_DATA(res), data, len);
+        return res;
+    }
     return case_operation(self, do_swapcase);
 }
 
